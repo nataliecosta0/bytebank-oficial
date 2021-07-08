@@ -1,3 +1,4 @@
+import 'package:bytebank_oficial/components/progress.dart';
 import 'package:bytebank_oficial/models/contact.dart';
 import 'package:bytebank_oficial/screens/contact_form.dart';
 import 'package:flutter/material.dart';
@@ -24,16 +25,7 @@ class _ContactsListState extends State<ContactsList> {
             case ConnectionState.none:
               break;
             case ConnectionState.waiting:
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    CircularProgressIndicator(),
-                    Text('Loading')
-                  ],
-                ),
-              );
+              return Progress();
             case ConnectionState.active:
               break;
             case ConnectionState.done:
