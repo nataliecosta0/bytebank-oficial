@@ -58,15 +58,18 @@ class _TransactionFormState extends State<TransactionForm> {
                 child: SizedBox(
                   width: double.maxFinite,
                   child: ElevatedButton(
-                    child: Text('Transfer'), onPressed: () {
-                      final double? value = double.tryParse(_valueController.text);
-                      final transactionCreated = Transaction(value!, widget.contact);
+                    child: Text('Transfer'),
+                    onPressed: () {
+                      final double? value =
+                          double.tryParse(_valueController.text);
+                      final transactionCreated =
+                          Transaction(value!, widget.contact);
                       _webClient.save(transactionCreated).then((transaction) {
-                        if(Transaction != null){
+                        if (Transaction != null) {
                           Navigator.pop(context);
                         }
                       });
-                  },
+                    },
                   ),
                 ),
               )

@@ -28,7 +28,7 @@ class TransactionsList extends StatelessWidget {
               if (transactions != null) {
                 return ListView.builder(
                   itemBuilder: (context, index) {
-                    final Transaction transaction = transactions![index];
+                    final Transaction transaction = transactions[index];
                     return Card(
                       child: ListTile(
                         leading: Icon(Icons.monetization_on),
@@ -48,7 +48,7 @@ class TransactionsList extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: transactions!.length,
+                  itemCount: transactions.length,
                 );
               }
               break;
