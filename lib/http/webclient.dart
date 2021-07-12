@@ -6,4 +6,4 @@ http.Client client = InterceptedClient.build(
   interceptors: [LoggingInterceptor()],
 );
 
-const String baseURL = "http://XXX.XX.XXX.X:8080/transactions";
+const String baseURL = "http://192.168.15.52:8080/transactions";
