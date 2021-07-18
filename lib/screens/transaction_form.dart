@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bytebank_oficial/components/progress.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:bytebank_oficial/components/response_dialog.dart';
@@ -34,6 +35,15 @@ class _TransactionFormState extends State<TransactionForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Visibility(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Progress(
+                    message: "Sending...",
+                  ),
+                ),
+                visible: false,
+              ),
               Text(
                 widget.contact.name.toString(),
                 style: TextStyle(
@@ -95,7 +105,7 @@ class _TransactionFormState extends State<TransactionForm> {
     String password,
     BuildContext context,
   ) async {
-     Transaction? transaction = await _send(
+    Transaction? transaction = await _send(
       transactionCreated,
       password,
       context,
@@ -105,7 +115,6 @@ class _TransactionFormState extends State<TransactionForm> {
 
   Future _showSuccessfulMessage(
       Transaction transaction, BuildContext context) async {
-
     if (Transaction != null) {
       await showDialog(
           context: context,
@@ -122,7 +131,8 @@ class _TransactionFormState extends State<TransactionForm> {
         await _webClient.save(transactionCreated, password).catchError((e) {
       _showFailureMessage(context, message: e.message);
     }, test: (e) => e is HttpException).catchError((e) {
-      _showFailureMessage(context, message: 'timeout submitting the transaction');
+      _showFailureMessage(context,
+          message: 'timeout submitting the transaction');
     }, test: (e) => e is TimeoutException).catchError((e) {
       _showFailureMessage(context);
     });
@@ -139,5 +149,4 @@ class _TransactionFormState extends State<TransactionForm> {
           return FailureDialog(message);
         });
   }
-
 }
