@@ -78,10 +78,10 @@ class _TransactionFormState extends State<TransactionForm> {
                   child: ElevatedButton(
                     child: Text('Transfer'),
                     onPressed: () {
-                      final double? value =
-                          double.tryParse(_valueController.text);
+                      final double value =
+                          double.tryParse(_valueController.text) ?? 0;
                       final transactionCreated =
-                          Transaction(transactionId, value!, widget.contact);
+                          Transaction(transactionId, value, widget.contact);
                       showDialog(
                           context: context,
                           builder: (contextDialog) {
@@ -120,14 +120,12 @@ class _TransactionFormState extends State<TransactionForm> {
 
   Future _showSuccessfulMessage(
       Transaction transaction, BuildContext context) async {
-    if (Transaction != null) {
-      await showDialog(
-          context: context,
-          builder: (contextDialog) {
-            return SuccessDialog('successful transaction');
-          });
-      Navigator.pop(context);
-    }
+    await showDialog(
+        context: context,
+        builder: (contextDialog) {
+          return SuccessDialog('successful transaction');
+        });
+    Navigator.pop(context);
   }
 
   Future<Transaction?> _send(Transaction transactionCreated, String password,
@@ -140,7 +138,9 @@ class _TransactionFormState extends State<TransactionForm> {
           message: 'timeout submitting the transaction');
     }, test: (e) => e is TimeoutException).catchError((e) {
       _showFailureMessage(context);
-    }).whenComplete(() => setState(() {_sending = false;}));
+    }).whenComplete(() => setState(() {
+              _sending = false;
+            }));
     return transaction;
   }
 
