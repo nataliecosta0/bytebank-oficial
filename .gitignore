@@ -48,3 +48,4 @@ app.*.map.json
 /windows/
 .metadata
 .vscode
+/android/app/google-services.json

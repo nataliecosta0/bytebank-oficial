@@ -1,6 +1,7 @@
 import 'package:bytebank_oficial/screens/contacts_list.dart';
 import 'package:bytebank_oficial/screens/transactions_list.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -94,6 +95,7 @@ class _FeatureItem extends StatelessWidget {
 }
 
 void _showContactslist(BuildContext context) {
+  FirebaseCrashlytics.instance.crash();
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (context) => ContactsList(),
