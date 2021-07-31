@@ -8,6 +8,7 @@ import 'package:bytebank_oficial/http/webclients/transaction_webclient.dart';
 import 'package:bytebank_oficial/models/contact.dart';
 import 'package:bytebank_oficial/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class TransactionForm extends StatefulWidget {
   final Contact contact;
@@ -132,11 +133,14 @@ class _TransactionFormState extends State<TransactionForm> {
       BuildContext context) async {
     final Transaction? transaction =
         await _webClient.save(transactionCreated, password).catchError((e) {
+          FirebaseCrashlytics.instance.recordError(e.message, null);
       _showFailureMessage(context, message: e.message);
     }, test: (e) => e is HttpException).catchError((e) {
+      FirebaseCrashlytics.instance.recordError(e.message, null);
       _showFailureMessage(context,
           message: 'timeout submitting the transaction');
     }, test: (e) => e is TimeoutException).catchError((e) {
+      FirebaseCrashlytics.instance.recordError(e.message, null);
       _showFailureMessage(context);
     }).whenComplete(() => setState(() {
               _sending = false;
