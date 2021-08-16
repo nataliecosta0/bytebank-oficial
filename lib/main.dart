@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bytebank_oficial/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -20,7 +22,9 @@ void main() async {
     // Handle Crashlytics enabled status when not in Debug,
     // e.g. allow your users to opt-in to crash reporting.
   }
-  runApp(BytebankApp());
+  runZonedGuarded<Future<void>>(() async {
+    runApp(BytebankApp());
+  }, FirebaseCrashlytics.instance.recordError);
 }
 
 class BytebankApp extends StatelessWidget {
