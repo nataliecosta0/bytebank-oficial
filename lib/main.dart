@@ -1,6 +1,5 @@
 import 'dart:async';
-
-import 'package:bytebank_oficial/screens/dashboard.dart';
+import 'package:bytebank_oficial/screens/dashboard_init.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,6 +39,6 @@ class BytebankApp extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
           ),
         ),
-        home: Dashboard());
+        home: DashboardInit());
   }
 }
