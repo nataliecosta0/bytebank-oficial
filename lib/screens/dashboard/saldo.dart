@@ -1,8 +1,13 @@
+import 'package:bytebank_oficial/models/saldo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Saldo extends StatelessWidget {
-  const Saldo({Key? key}) : super(key: key);
+class SaldoCard extends StatelessWidget {
+  final Saldo saldo;
+  const SaldoCard({
+    Key? key,
+    required this.saldo,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +15,7 @@ class Saldo extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(20.0),
         child: Text(
-          "30,00",
+          saldo.toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 40,

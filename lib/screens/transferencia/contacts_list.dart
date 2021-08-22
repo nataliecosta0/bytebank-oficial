@@ -1,7 +1,7 @@
 import 'package:bytebank_oficial/components/progress.dart';
 import 'package:bytebank_oficial/models/contact.dart';
-import 'package:bytebank_oficial/screens/contact_form.dart';
-import 'package:bytebank_oficial/screens/transaction_form.dart';
+import 'package:bytebank_oficial/screens/transferencia/contact_form.dart';
+import 'package:bytebank_oficial/screens/transferencia/transaction_form.dart';
 import 'package:flutter/material.dart';
 import 'package:bytebank_oficial/database/dao/contact_dao.dart';
 
